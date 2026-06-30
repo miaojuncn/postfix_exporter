@@ -1,4 +1,4 @@
-FROM golang:1.16 AS builder
+FROM golang:1.26 AS builder
 WORKDIR /src
 
 # avoid downloading the dependencies on succesive builds
@@ -12,9 +12,7 @@ RUN go mod verify
 
 COPY . .
 
-# Force the go compiler to use modules
-ENV GO111MODULE=on
-RUN go test
+RUN go test ./...
 RUN go build -o /bin/postfix_exporter
 
 FROM debian:latest

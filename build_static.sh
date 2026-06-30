@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker run -i -v `pwd`:/postfix_exporter golang:1.16 /bin/sh << 'EOF'
+docker run -i -v "$(pwd)":/postfix_exporter golang:1.26 /bin/sh << 'EOF'
 set -ex
 
 # Install prerequisites for the build process.
@@ -9,7 +9,7 @@ apt-get install -yq libsystemd-dev
 
 cd /postfix_exporter
 
-go get -d ./...
+go mod download
 go build -a -tags static_all
 strip postfix_exporter
 EOF

@@ -52,10 +52,12 @@ Additionally, it is possible to read the journal from a directory with the `--sy
 
 ## Build options
 
+This fork is tested with Go 1.26.
+
 Default the exporter is build with systemd journal functionality (but it is disabled at default).
 Because the systemd headers are required for building with systemd, there is
 an option to build the exporter without systemd. Use the build tag `nosystemd`.
 
-```
+```bash
 go build -tags nosystemd
 ```
